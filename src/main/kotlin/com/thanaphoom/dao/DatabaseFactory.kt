@@ -27,7 +27,7 @@ object DatabaseFactory {
         transaction(database) {
             SchemaUtils.create(Loggings)
         }
-        Flyway.configure().dataSource(dataSource).load().migrate()
+//        Flyway.configure().dataSource(dataSource).load().migrate()
     }
 
     private fun createHikariDataSource(
