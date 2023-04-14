@@ -5,6 +5,6 @@ RUN gradle buildFatJar --no-daemon
 
 FROM openjdk:17
 EXPOSE 8080:8080
-RUN mkdir -p /app/build/db
+RUN mkdir /app
 COPY --from=build /home/gradle/src/build/libs/*.jar /app/logging-service.jar
 ENTRYPOINT ["java","-jar","/app/logging-service.jar"]

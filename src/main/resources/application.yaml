@@ -9,4 +9,3 @@ ktor:
 storage:
   driverClassName: "$DRIVERCLASSNAME:org.postgresql.Driver"
   jdbcURL: "$JDBCURL:jdbc:postgresql://localhost/logging-service?user=logging-service&password=1234567890&ssl=false"
-  dbFilePath: build/db

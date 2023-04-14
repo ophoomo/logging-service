@@ -21,10 +21,7 @@ import java.time.LocalDateTime
 object DatabaseFactory {
     fun init(config: ApplicationConfig) {
         val driverClassName = config.property("storage.driverClassName").getString()
-        val jdbcURL = config.property("storage.jdbcURL").getString() +
-                (config.propertyOrNull("storage.dbFilePath")?.getString()?.let {
-                    File(it).canonicalFile.absolutePath
-                } ?: "")
+        val jdbcURL = config.property("storage.jdbcURL").getString()
         val dataSource = createHikariDataSource(url = jdbcURL, driver = driverClassName)
         val database = Database.connect(dataSource)
         transaction(database) {
