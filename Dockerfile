@@ -1,10 +1,10 @@
-FROM maven:3-openjdk-17 AS build
-COPY . /home/maven/src
-WORKDIR /home/maven/src
-RUN mvn package
+FROM gradle:7-jdk17 AS build
+COPY --chown=gradle:gradle . /home/gradle/src
+WORKDIR /home/gradle/src
+RUN gradle buildFatJar --no-daemon
 
 FROM openjdk:17
 EXPOSE 8080:8080
 RUN mkdir /app
-COPY --from=build /home/maven/src/target/*-with-dependencies.jar /app/logging-service.jar
+COPY --from=build /home/gradle/src/build/libs/*.jar /app/logging-service.jar
 ENTRYPOINT ["java","-jar","/app/logging-service.jar"]
