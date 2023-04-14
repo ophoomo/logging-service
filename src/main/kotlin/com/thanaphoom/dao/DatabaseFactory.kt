@@ -12,7 +12,6 @@ import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.javatime.CurrentDateTime
-import org.jetbrains.exposed.sql.javatime.date
 import org.jetbrains.exposed.sql.javatime.datetime
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -27,7 +26,10 @@ object DatabaseFactory {
                     File(it).canonicalFile.absolutePath
                 } ?: "")
         val dataSource = createHikariDataSource(url = jdbcURL, driver = driverClassName)
-        Database.connect(dataSource)
+        val database = Database.connect(dataSource)
+        transaction(database) {
+            SchemaUtils.create(Loggings)
+        }
         Flyway.configure().dataSource(dataSource).load().migrate()
     }
 

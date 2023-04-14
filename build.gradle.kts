@@ -40,6 +40,7 @@ dependencies {
     implementation("org.postgresql:postgresql:$postgres_version")
     implementation("org.flywaydb:flyway-core:6.5.2")
     implementation("io.ktor:ktor-server-caching-headers:$ktor_version")
+    implementation("io.ktor:ktor-server-request-validation:$ktor_version")
     implementation("io.ktor:ktor-serialization-gson-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-compression:$ktor_version")
     implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")

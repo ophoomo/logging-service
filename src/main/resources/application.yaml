@@ -1,12 +1,12 @@
 ktor:
-  development: true
+  development: "$DEVELOPMENT:false"
   deployment:
-    port: 8080
+    port: "$PORT:8080"
   application:
     modules:
       - com.thanaphoom.ApplicationKt.module
 
 storage:
-  driverClassName: "org.postgresql.Driver"
-  jdbcURL: "jdbc:postgresql://localhost/logging-service?user=logging-service&password=1234567890&ssl=false"
+  driverClassName: "$DRIVERCLASSNAME:org.postgresql.Driver"
+  jdbcURL: "$JDBCURL:jdbc:postgresql://localhost/logging-service?user=logging-service&password=1234567890&ssl=false"
   dbFilePath: build/db

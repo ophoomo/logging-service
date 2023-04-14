@@ -1,4 +1,6 @@
 package com.thanaphoom.api.logging
 
-class loggingService {
+interface LoggingService {
+    suspend fun allLogging(): List<Logging>
+    suspend fun saveLogging(data: LoggingCreate): Logging?
 }
